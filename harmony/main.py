@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 
 from argparser import ArgParser
 from filehandler import FileHandler
@@ -25,6 +26,11 @@ file_handler.set_destination(args.destination)
 # set method
 file_handler.set_method(args.method)
 
+# set mask
+file_handler.set_mask(args.mask)
+
+# find files in source directory
 file_handler.find_files()
 
-print(file_handler.list_of_files)
+# let's do some magic
+file_handler.process_files()
