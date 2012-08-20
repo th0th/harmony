@@ -1,0 +1,3 @@
+Harmony is _-for now it's going to be i can say-_ a music folder organizer. It reads ID3 tags of mp3 files, and tidies copying/moving them into folders with adjustable structure.
+
+Harmony was my attempt for http://developer.ubuntu.com/showdown/[The Ubuntu App Showdown]. Due to lack of time I failed to complete it before the due. However, because I got pretty nice comments about the idea, I decided to make Harmony a working application.
