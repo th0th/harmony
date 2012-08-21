@@ -9,6 +9,8 @@ class FileHandler:
 		self.number_of_files = 0
 		self.extensions = ['mp3']
 		self.list_of_files = []
+		self.list_of_erroneous_files = []
+		self.list_of_skipped_files = []
 		self.method = None
 		self.scanned = False
 
@@ -42,12 +44,20 @@ class FileHandler:
 				return True
 		# skip the file
 		return False
+
+	def prepare_dir(self, filepath):
+		directory = os.path.dirname(filepath)
+
+		if not ( os.path.isdir(directory) ):
+			os.makedirs(directory)
 	
-	def copy_file(self, src, dst):
-		return shutil.copy(src, dst)
-	
-	def move_file(self, src, dst):
-		return shutil.move(src, dst)
+	def process_file(self, src, dst, overwrite=False):
+		self.prepare_dir(dst)
+
+		if ( overwrite or not os.path.isfile(dst) ):
+			return getattr(shutil, self.method)(src, dst)
+		else:
+			self.list_of_skipped_files.append(src)
 
 	# link to taghandler class' method
 	def set_mask(self, mask):
@@ -55,20 +65,27 @@ class FileHandler:
 
 		return True
 
-	def process_files(self):
+	def process_files(self, overwrite=False, callback = None):
 		if not ( self.scanned ):
 			raise Exception('source isn\'t scanned yet')
 
 		if not ( self.tagHandler.mask ):
 			raise Exception('mask is not set')
 
-		for filepath in self.list_of_files:
-			filename = self.tagHandler.generate_filename(filepath)
-			print filename
+		state = 0
 
-		if ( self.method == 'move' ):
-			# move files
-			pass
-		else:
-			# copy files
-			pass
+		for filepath in self.list_of_files:
+			try:
+				filename = self.tagHandler.generate_filename(filepath)
+
+				destination = os.path.join(self.destination, filename)
+
+				# callback
+				if ( callback ):
+					callback(state)
+
+				self.process_file(filepath, destination)
+			except:
+				self.list_of_erroneous_files.append(filepath)
+
+			state += 100.0 / len(self.list_of_files)
