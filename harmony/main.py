@@ -10,11 +10,6 @@ arg_parser = ArgParser()
 
 args = arg_parser.get_args()
 
-# show version and exit
-if ( args.version == True ):
-	print("Current version: 0.1")
-	exit()
-
 # file handler instance
 file_handler = FileHandler()
 
