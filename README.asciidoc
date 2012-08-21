@@ -1,3 +1,73 @@
-Harmony is _-for now it's going to be i can say-_ a music folder organizer. It reads ID3 tags of mp3 files, and tidies copying/moving them into folders with adjustable structure.
+== Harmony ==
 
-Harmony was my attempt for http://developer.ubuntu.com/showdown/[The Ubuntu App Showdown]. Due to lack of time I failed to complete it before the due. However, because I got pretty nice comments about the idea, I decided to make Harmony a working application.
+Harmony is a command-line tool for organizing music folders.
+
+
+=== License ===
+
+Harmony is licensed under the General Public License, Version 3
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+=== Dependencies ===
+
+Harmony runs with Python 2.7, not 3.* because mutagen hasn't been ported to Python 3 yet.
+
+
+=== Installation ===
+
+To be written.
+
+
+=== Usage ===
+
+The command
+
+----
+$ harmony --source /path/to/source --recursive --destination /path/to/destination \
+--mask "{artist}/{album}/{title}.mp3" --method copy
+----
+
+will basically scan +/path/to/source+ directory recursively (due to the parameter +--recursive+), and copy the found audio files to the +/path/to/destination+ with the selected mask. For example;
+
+Jonathan Coulton's song \'Code Monkey' will be copied to directory +/path/to/destination/Jonathan Coulton/Thing a Week Three/Code Monkey.mp3+ no matter what the original filename was.
+
+==== Arguments ====
+
+===== --source/-s /path/to/source =====
+
+Source directory that will be scanned for audio files.
+
+===== --recursive/-r =====
+
+Scan source directory recursively.
+
+===== --destination/-d /path/to/destination =====
+
+Destination directory that processed files will be copied or moved.
+
+===== --method/-m {copy, move} =====
+
+Copy or move the file to the destination.
+
+===== --mask/-x mask =====
+
+Mask that will be used for destination of the processed file.
+
+ex: "{genre}/{artist}/{date}/{tracknumber}-{title}.mp3"
+
+Available options: artist, album, title, genre, date, tracknumber
+
+===== --overwrite/-o =====
+
+Overwrite file if a file with the samename exists in destination.
+
+===== --version =====
+
+Display current version and exit.
+
+=== Platforms ===
+
+Tested only on GNU/Linux, it should run on any Unix-like platform. However, since there is no dependencies outsite the standard Python library, it should work on Microsoft Windows as well.
