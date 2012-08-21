@@ -3,6 +3,7 @@
 
 from argparser import ArgParser
 from filehandler import FileHandler
+from progressbar import ProgressBar
 
 # cli arg parser instance
 arg_parser = ArgParser()
@@ -32,5 +33,22 @@ file_handler.set_mask(args.mask)
 # find files in source directory
 file_handler.find_files()
 
+print "\nSource directory scanned. Found " + str(len(file_handler.list_of_files)) + " files."
+print "\nProcessing files..."
+
+# progress bar - processing files
+progress_bar = ProgressBar().start()
+
 # let's do some magic
-file_handler.process_files()
+file_handler.process_files(overwrite=args.overwrite, callback=progress_bar.update)
+
+# set progres bar status as finished
+progress_bar.finish()
+
+print "\nReport:"
+
+processed_files = len(file_handler.list_of_files) - len(file_handler.list_of_erroneous_files) - len(file_handler.list_of_skipped_files)
+
+print str(processed_files) + " files successfully processed."
+print str(len(file_handler.list_of_erroneous_files)) + " files couldn't be processed due to tag error."
+print str(len(file_handler.list_of_skipped_files)) + " files skipped because a file exists in the destination (use --overwrite to overwrite)."
