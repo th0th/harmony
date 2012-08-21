@@ -57,9 +57,8 @@ class FileHandler:
 			os.makedirs(directory)
 	
 	def process_file(self, src, dst, overwrite=False):
-		self.prepare_dir(dst)
-
 		if ( overwrite or not os.path.isfile(dst) ):
+			self.prepare_dir(dst)
 			return getattr(shutil, self.method)(src, dst)
 		else:
 			self.list_of_skipped_files.append(src)
