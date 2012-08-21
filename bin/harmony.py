@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
-from argparser import ArgParser
-from filehandler import FileHandler
-from progressbar import ProgressBar
+from harmony.argparser import ArgParser
+from harmony.filehandler import FileHandler
+from harmony.progressbar import ProgressBar
 
 # cli arg parser instance
 arg_parser = ArgParser()
