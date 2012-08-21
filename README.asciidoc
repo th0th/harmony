@@ -26,8 +26,7 @@ To be written.
 The command
 
 ----
-$ harmony --source /path/to/source --recursive --destination /path/to/destination \
---mask "{artist}/{album}/{title}.mp3" --method copy
+$ harmony --source /path/to/source --recursive --destination /path/to/destination --mask "{artist}/{album}/{title}.mp3" --method copy
 ----
 
 will basically scan +/path/to/source+ directory recursively (due to the parameter +--recursive+), and copy the found audio files to the +/path/to/destination+ with the selected mask. For example;
