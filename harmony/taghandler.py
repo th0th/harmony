@@ -14,10 +14,8 @@ class TagHandler:
 
 		new_tags = {}
 
-		print tags
-
 		for tag in tags:
-			new_tags[tag] = tags[tag][0]
+			new_tags[tag] = tags[tag][0].encode('utf-8')
 
 		return new_tags
 
