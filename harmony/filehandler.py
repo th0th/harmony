@@ -30,11 +30,16 @@ class FileHandler:
 		else:
 			raise Exception("method not available.")
 	
-	def find_files(self):
-		for folder, subfolder, filenames in os.walk(self.source):
-			for filename in filenames:
+	def find_files(self, recursive=False):
+		if ( recursive ):
+			for folder, subfolder, filenames in os.walk(self.source):
+				for filename in filenames:
+					if ( self.check_for_extension(filename) ):
+						self.list_of_files.append(os.path.join(folder, filename))
+		else:
+			for filename in os.listdir(self.source):
 				if ( self.check_for_extension(filename) ):
-					self.list_of_files.append(os.path.join(folder, filename))
+					self.list_of_files.append(os.path.join(self.source, filename))
 
 		self.scanned = True
 
