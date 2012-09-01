@@ -18,7 +18,13 @@ Harmony runs with Python 2.7, not 3.* because mutagen hasn't been ported to Pyth
 
 === Installation ===
 
-To be written.
+To install harmony, after cloning run (requires python2):
+
+----
+$ python setup.py --prefix=/usr
+----
+
+If you are using Arch Linux, you can install Harmony from https://aur.archlinux.org/packages.php?ID=62440[AUR].
 
 
 === Usage ===
