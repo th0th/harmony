@@ -2,7 +2,7 @@
 CHANGES.txt
 LICENSE.txt
 setup.py
-bin/harmony.py
+bin/harmony
 harmony/__init__.py
 harmony/argparser.py
 harmony/filehandler.py
