@@ -18,7 +18,7 @@ Harmony runs with Python 2.7, not 3.* because mutagen hasn't been ported to Pyth
 
 === Installation ===
 
-To install harmony, after cloning run (requires python2):
+To install Harmony, after cloning run (requires python2):
 
 ----
 $ python setup.py --prefix=/usr
